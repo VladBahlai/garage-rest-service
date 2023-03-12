@@ -1,0 +1,4 @@
+POSTGRES_VERSION=14
+USER=postgres
+PASSWORD=postgres
+DB_NAME=garage

@@ -1,0 +1,23 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres:${POSTGRES_VERSION}
+    restart: always
+    environment:
+      POSTGRES_USER: ${USER}
+      POSTGRES_PASSWORD: ${PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+
+  garage:
+    build:
+      context: .
+    restart: always
+    environment:
+      APP_DB_URL : jdbc:postgresql://db/${DB_NAME}
+      APP_DB_USER: ${USER}
+      APP_DB_PASSWORD: ${PASSWORD}
+    ports:
+      - "8080:8080"
